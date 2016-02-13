@@ -61,13 +61,20 @@ void Check(HRESULT hr, const std::string& function)
 
 void Run(REFCLSID rclsid)
 {
-	std::cout << "> About to create Foo..." << std::endl;
-	CComPtr<CppCom::IFoo> foo;
-	auto hr = foo.CoCreateInstance(rclsid, nullptr, CLSCTX_INPROC_SERVER);
+	std::cout << "> About to create Foo via unknown..." << std::endl;
+	CComPtr<IUnknown> unknown;
+	auto hr = unknown.CoCreateInstance(rclsid, nullptr, CLSCTX_INPROC_SERVER);
 	Check(hr, "CoCreateInstance()");
-	std::cout << "> About to call Bar..." << std::endl;
-	hr = foo->Bar();
-	Check(hr, "Foo::Bar");
+	std::cout << "> About to QI to IFoo..." << std::endl;
+	{
+		CComPtr<CppCom::IFoo> foo;
+		hr = unknown.QueryInterface(&foo);
+		Check(hr, "QueryInterface");
+		std::cout << "> About to call Bar..." << std::endl;
+		hr = foo->Bar();
+		Check(hr, "Foo::Bar");
+		std::cout << "> About to release QI reference..." << std::endl;
+	}
 	std::cout << "> About to release final reference..." << std::endl;
 }
 
@@ -85,6 +92,10 @@ int main(int argc, char** argv)
 			Run(CppCom::CLSID_FooNative);
 		else if (argv[1] == std::string{ "c#" })
 			Run(CsCom::CLSID_Foo);
+		else if (argv[1] == std::string{ "wrapper" })
+			Run(CppCom::CLSID_FooWrapper);
+		else if (argv[1] == std::string{ "custom" })
+			Run(CsCom::CLSID_FooCustom);
 		else
 			std::cout << "WTF?" << std::endl;
 	}

@@ -20,4 +20,12 @@
 		name="CsCom.Foo"
 		runtimeVersion="v4.0.30319">
 	</clrClass>
+	<clrClass
+		clsid="{259B006A-93C1-408B-989C-204E5C80D2DD}"
+		tlbid="{2579bd96-d7b0-4fa6-82ac-e5d4286a312a}"
+		progid="CsCom.FooCustom"
+		threadingModel="Both"
+		name="CsCom.FooCustom"
+		runtimeVersion="v4.0.30319">
+	</clrClass>
 </assembly>
