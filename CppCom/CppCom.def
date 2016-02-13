@@ -1,0 +1,4 @@
+LIBRARY CppCom
+EXPORTS
+	DllCanUnloadNow private
+	DllGetClassObject private

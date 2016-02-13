@@ -1,0 +1,27 @@
+import "oaidl.idl";
+import "ocidl.idl";
+
+[uuid("04E88DF6-098F-4AD3-A7C6-0A13F7BDA77B")]
+[version(1.0)]
+library CppCom
+{
+	importlib("stdole2.tlb");
+
+	[object, uuid("121C468B-6EC4-48C3-8495-0909E4053398")]
+	interface IFoo : IUnknown
+	{
+		HRESULT Bar();
+	};
+
+	[uuid("B7491852-3A2B-4CE9-8ADF-4C1D36EA2379")]
+	coclass FooNative
+	{
+		[default] interface IFoo;
+	};
+
+	[uuid("876C4FD9-6F4C-4989-8408-B6443F3305E4")]
+	coclass FooWrapper
+	{
+		[default] interface IFoo;
+	};
+};

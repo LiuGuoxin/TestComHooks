@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="ClassFactory.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="ComModule.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="ComObject.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="ComObjectMap.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="IDisposable.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="ProxyObject.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="FooNative.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="FooWrapper.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Com">
+      <UniqueIdentifier>{e7d6da08-93af-4dd0-bcde-c05596259032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{985952ed-38cd-485e-b2ee-4c5042ac53b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dll">
+      <UniqueIdentifier>{50db4aaf-eb54-445e-aea3-863d38fa07ed}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CppCom.def">
+      <Filter>Dll</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="CppCom.manifest">
+      <Filter>Dll</Filter>
+    </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="CppCom.idl">
+      <Filter>Dll</Filter>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Dll</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt">
+      <Filter>Dll</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

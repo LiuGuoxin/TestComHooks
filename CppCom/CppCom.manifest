@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<assembly
+	xmlns="urn:schemas-microsoft-com:asm.v1"
+	manifestVersion="1.0">
+	<assemblyIdentity
+		type="win32"
+		name="CppCom"
+		version="1.0.0.0" />
+	<file name="CppCom.dll">
+		<comClass
+			clsid="{B7491852-3A2B-4CE9-8ADF-4C1D36EA2379}"
+			threadingModel="Free" />
+		<comClass
+			clsid="{876C4FD9-6F4C-4989-8408-B6443F3305E4}"
+			threadingModel="Free" />
+		<typelib
+			tlbid="{04E88DF6-098F-4AD3-A7C6-0A13F7BDA77B}"
+			version="1.0"
+			helpdir="" />
+	</file>
+	<comInterfaceExternalProxyStub
+		name="IFoo"
+		iid="{121C468B-6EC4-48C3-8495-0909E4053398}"
+		proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+		baseInterface="{00000000-0000-0000-C000-000000000046}"
+		tlbid="{04E88DF6-098F-4AD3-A7C6-0A13F7BDA77B}" />
+</assembly>
