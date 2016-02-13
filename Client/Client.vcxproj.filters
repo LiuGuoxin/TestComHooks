@@ -6,4 +6,7 @@
   <ItemGroup>
     <Manifest Include="Client.exe.manifest" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
+  </ItemGroup>
 </Project>

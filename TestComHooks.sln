@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0DEAE335-0779-4572-95ED-161FFC325570}"
 	ProjectSection(SolutionItems) = preProject
 		collect.cmd = collect.cmd
+		readme.txt = readme.txt
 	EndProjectSection
 EndProject
 Global
@@ -25,6 +26,7 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9E25B401-5834-45FD-AA6E-804E86E8B234}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{9E25B401-5834-45FD-AA6E-804E86E8B234}.Debug|Any CPU.Build.0 = Debug|Win32
 		{9E25B401-5834-45FD-AA6E-804E86E8B234}.Debug|x64.ActiveCfg = Debug|x64
 		{9E25B401-5834-45FD-AA6E-804E86E8B234}.Debug|x64.Build.0 = Debug|x64
 		{9E25B401-5834-45FD-AA6E-804E86E8B234}.Debug|x86.ActiveCfg = Debug|Win32
@@ -35,6 +37,7 @@ Global
 		{9E25B401-5834-45FD-AA6E-804E86E8B234}.Release|x86.ActiveCfg = Release|Win32
 		{9E25B401-5834-45FD-AA6E-804E86E8B234}.Release|x86.Build.0 = Release|Win32
 		{1802ED73-E072-42C3-884A-D045DD582AD0}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{1802ED73-E072-42C3-884A-D045DD582AD0}.Debug|Any CPU.Build.0 = Debug|Win32
 		{1802ED73-E072-42C3-884A-D045DD582AD0}.Debug|x64.ActiveCfg = Debug|x64
 		{1802ED73-E072-42C3-884A-D045DD582AD0}.Debug|x64.Build.0 = Debug|x64
 		{1802ED73-E072-42C3-884A-D045DD582AD0}.Debug|x86.ActiveCfg = Debug|Win32
