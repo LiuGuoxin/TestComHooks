@@ -12,3 +12,11 @@ Running the client
 4) client.exe custom
 	This will create a C# FooCustom CMO object that implements ICustomQueryInterface to try to gain access to reference counts.
 	This demonstrates improper disposal of the C# object by disposing before the final reference is released.
+
+
+Diagnosing problems
+===================
+If you "get class not registered" errors when running client.exe it may be due to the activation context cache.
+There is limited documentation on this even existing:
+http://blogs.msdn.com/b/junfeng/archive/2007/10/01/vista-activation-context-cache.aspx
+The easiest way other than rebooting is to "touch" the client.exe.manifest to cause it to be re-scanned.

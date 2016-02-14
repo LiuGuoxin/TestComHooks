@@ -9,4 +9,3 @@ Building and running the project
 7) Run collect.cmd to gather remaining artifacts to the solution Debug directory.
 8) Follow the instructions in Client readme.txt to run the different test scenarios.
 
-Warning!  If you get class not registered errors when running the client you may have cached side-by-side manifests.  I don't yet know how to clear this issue.
