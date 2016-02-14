@@ -96,6 +96,8 @@ int main(int argc, char** argv)
 			Run(CppCom::CLSID_FooWrapper);
 		else if (argv[1] == std::string{ "custom" })
 			Run(CsCom::CLSID_FooCustom);
+		else if (argv[1] == std::string{ "hook" })
+			Run(CsCom::CLSID_FooHook);
 		else
 			std::cout << "WTF?" << std::endl;
 	}

@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Foo.cs" />
     <Compile Include="FooCustom.cs" />
+    <Compile Include="FooHook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -28,4 +28,12 @@
 		name="CsCom.FooCustom"
 		runtimeVersion="v4.0.30319">
 	</clrClass>
+	<clrClass
+		clsid="{79E1CA1B-C8BE-4944-98CB-987D359B2F2A}"
+		tlbid="{2579bd96-d7b0-4fa6-82ac-e5d4286a312a}"
+		progid="CsCom.FooHook"
+		threadingModel="Both"
+		name="CsCom.FooHook"
+		runtimeVersion="v4.0.30319">
+	</clrClass>
 </assembly>

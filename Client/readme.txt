@@ -10,9 +10,11 @@ Running the client
 	This will create the C# Foo COM object directly from a C++ client.
 	This demonstrates improper disposal of the C# object with Dispose being called after program termination.
 4) client.exe custom
-	This will create a C# FooCustom CMO object that implements ICustomQueryInterface to try to gain access to reference counts.
+	This will create a C# FooCustom COM object that implements ICustomQueryInterface to try to gain access to reference counts.
 	This demonstrates improper disposal of the C# object by disposing before the final reference is released.
-
+5) client.exe hook
+	This will create a C# FooHook COM object that detours the Release v-table entries in all exposed COM interfaces.
+	This did not originally work but appears to be working now.  It detects the final release and disposed the object.
 
 Diagnosing problems
 ===================
