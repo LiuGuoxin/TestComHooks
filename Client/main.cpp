@@ -61,21 +61,30 @@ void Check(HRESULT hr, const std::string& function)
 
 void Run(REFCLSID rclsid)
 {
-	std::cout << "> About to create Foo via unknown..." << std::endl;
-	CComPtr<IUnknown> unknown;
-	auto hr = unknown.CoCreateInstance(rclsid, nullptr, CLSCTX_INPROC_SERVER);
-	Check(hr, "CoCreateInstance()");
-	std::cout << "> About to QI to IFoo..." << std::endl;
+	CComPtr<ISupportErrorInfo> supportErrorInfo;
 	{
-		CComPtr<CppCom::IFoo> foo;
-		hr = unknown.QueryInterface(&foo);
-		Check(hr, "QueryInterface");
-		std::cout << "> About to call Bar..." << std::endl;
-		hr = foo->Bar();
-		Check(hr, "Foo::Bar");
-		std::cout << "> About to release QI reference..." << std::endl;
+		std::cout << "> About to create Foo via unknown..." << std::endl;
+		CComPtr<IUnknown> unknown;
+		auto hr = unknown.CoCreateInstance(rclsid, nullptr, CLSCTX_INPROC_SERVER);
+		Check(hr, "CoCreateInstance()");
+		std::cout << "> About to QI to IFoo..." << std::endl;
+		{
+			CComPtr<CppCom::IFoo> foo;
+			hr = unknown.QueryInterface(&foo);
+			Check(hr, "QueryInterface");
+
+			std::cout << "> About to QI to ISupportErrorInfo..." << std::endl;
+			hr = foo.QueryInterface(&supportErrorInfo);
+			std::cout << (SUCCEEDED(hr) ? "supported" : "not-supported") << std::endl;
+
+			std::cout << "> About to call Bar..." << std::endl;
+			hr = foo->Bar();
+			Check(hr, "Foo::Bar");
+			std::cout << "> About to release IFoo reference..." << std::endl;
+		}
+		std::cout << "> About to release IUnknown reference..." << std::endl;
 	}
-	std::cout << "> About to release final reference..." << std::endl;
+	std::cout << "> About to release ISupportErrorInfo reference..." << std::endl;
 }
 
 int main(int argc, char** argv)

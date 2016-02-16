@@ -1,25 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace CsCom
 {
 	public class ReleaseHooker
 	{
-		private delegate int ReleaseDelegate(IntPtr unknown);
-		private ReleaseDelegate originalRelease;
-		private ReleaseDelegate releaseDetour;
-		private readonly IDisposable comObject;
+		private readonly List<ReleaseHook> hooks = new List<ReleaseHook>();
 
 		public ReleaseHooker(IDisposable comObject, params Type[] interfaces)
 		{
-			this.comObject = comObject;
-			releaseDetour = ReleaseDetour;
-
-			var releaseDetourPointer = Marshal.GetFunctionPointerForDelegate(releaseDetour);
-			InstallHook(Marshal.GetIUnknownForObject(comObject), releaseDetourPointer);
-			InstallHook(Marshal.GetComInterfaceForObject(comObject, typeof(IDisposable)), releaseDetourPointer);
+			var unknown = Marshal.GetIUnknownForObject(comObject);
+			hooks.Add(new ReleaseHook(comObject, unknown));
+			AddHookAndRelease(comObject, Marshal.GetComInterfaceForObject(comObject, typeof(IDisposable)));
 			foreach (var @interface in interfaces)
-				InstallHook(Marshal.GetComInterfaceForObject(comObject, @interface), releaseDetourPointer);
+				AddHookAndRelease(comObject, Marshal.GetComInterfaceForObject(comObject, @interface));
+			//Cannot hook this one because it is in write-protected memory
+			//AddHookAndRelease(comObject, QueryInterface(unknown, new Guid("df0b3d60-548f-101b-8e65-08002b2bd119"))); //ISupportErrorInfo
+			Marshal.Release(unknown);
 
 			//TODO: GetComInterfaceForObject does not work for typeof(object), so what about the _Object interface?
 			//Would need to do this for IDispatch (via GetIDispatchForObject) if it supported it
@@ -27,27 +25,25 @@ namespace CsCom
 			//	ITypeInfo, IObjectSafety, ISupportErrorInfo, IMarshal, IReflect, IDispatchEx, IEnumVARIANT, etc.?
 		}
 
-		private int ReleaseDetour(IntPtr unknown)
+		//private IntPtr QueryInterface(IntPtr unknown, Guid iid)
+		//{
+		//	IntPtr comInterface;
+		//	var result = Marshal.QueryInterface(unknown, ref iid, out comInterface);
+		//	if (result != 0)
+		//		throw new InvalidOperationException($"Object does not support interface {iid}.");
+		//	return comInterface;
+		//}
+
+		private void AddHookAndRelease(IDisposable comObject, IntPtr comInterface)
 		{
-			var referenceCount = originalRelease(unknown);
-			if (referenceCount == 0)
-				comObject.Dispose();
-			return referenceCount;
+			hooks.Add(new ReleaseHook(comObject, comInterface));
+			Marshal.Release(comInterface);
 		}
 
-		private void InstallHook(IntPtr comInterface, IntPtr releaseDetourPointer)
+		public void ReleaseMarshalledDelegates()
 		{
-			var vtable = Marshal.ReadIntPtr(comInterface);
-			var originalReleasePointer = Marshal.ReadIntPtr(vtable, 2 * IntPtr.Size);
-			Marshal.WriteIntPtr(vtable, 2 * IntPtr.Size, releaseDetourPointer);
-			if (originalRelease == null)
-				originalRelease = Marshal.GetDelegateForFunctionPointer<ReleaseDelegate>(originalReleasePointer);
-			originalRelease(comInterface);
-		}
-
-		public void ReleaseMarshalledDelegate()
-		{
-			releaseDetour = null;
+			foreach (var hook in hooks)
+				hook.ReleaseMarshalledDelegate();
 		}
 	}
 }

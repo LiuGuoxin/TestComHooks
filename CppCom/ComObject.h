@@ -4,7 +4,7 @@
 #include "ComModule.h"
 
 template <typename Type, typename Interface, const CLSID* Clsid = nullptr>
-class ComObject : public Interface
+class ComObject : public Interface, public ISupportErrorInfo
 {
 protected:
 	std::atomic<int> referenceCount = 0;
@@ -26,11 +26,15 @@ public:
 	{
 		if (ppvObject == nullptr)
 			return E_POINTER;
-		if (riid != IID_IUnknown &&
-			riid != __uuidof(Interface))
+		if (riid == IID_IUnknown)
+			*ppvObject = static_cast<IUnknown*>(static_cast<Interface*>(this));
+		else if (riid == IID_ISupportErrorInfo)
+			*ppvObject = static_cast<ISupportErrorInfo*>(this);
+		else if (riid == __uuidof(Interface))
+			*ppvObject = static_cast<Interface*>(this);
+		else
 			return E_NOINTERFACE;
 		++referenceCount;
-		*ppvObject = static_cast<Interface*>(this);
 		return S_OK;
 	}
 
@@ -48,6 +52,11 @@ public:
 			delete this;
 		}
 		return result;
+	}
+
+	HRESULT __stdcall InterfaceSupportsErrorInfo(REFIID riid)
+	{
+		return S_OK;
 	}
 
 	virtual HRESULT OnFinalConstruct()

@@ -37,7 +37,7 @@ namespace CsCom
 				return;
 			disposed = true;
 			if (releaseManagedReferences)
-				releaseHooker.ReleaseMarshalledDelegate();
+				releaseHooker.ReleaseMarshalledDelegates();
 			//TODO: other disposal taking into account releaseManagedReferences
 		}
 
