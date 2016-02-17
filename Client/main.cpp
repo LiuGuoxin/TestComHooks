@@ -13,6 +13,27 @@
 #import "c:\save\code\tests\TestComHooks\CppCom\Debug\CppCom.tlb" raw_interfaces_only named_guids
 #import "c:\save\code\tests\TestComHooks\CsCom\bin\Debug\CsCom.tlb" raw_interfaces_only named_guids
 
+std::string FormatError(int error)
+{
+	std::string result;
+	char* errorMessage = nullptr;
+	auto formatResult = ::FormatMessageA(
+		FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+		nullptr,
+		error,
+		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+		reinterpret_cast<LPSTR>(&errorMessage),
+		0,
+		nullptr);
+	if (formatResult != 0)
+		result = errorMessage;
+	else
+		result = "No extra description found";
+	if (errorMessage)
+		::LocalFree(errorMessage);
+	return result;
+}
+
 void Check(HRESULT hr, const std::string& function)
 {
 	if (SUCCEEDED(hr))
@@ -38,23 +59,7 @@ void Check(HRESULT hr, const std::string& function)
 			out << "GetDescription failed! hr = " << descriptionResult;
 	}
 	else
-	{
-		char* errorMessage = nullptr;
-		auto formatResult = ::FormatMessageA(
-			FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
-			nullptr,
-			hr,
-			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-			reinterpret_cast<LPSTR>(&errorMessage),
-			0,
-			nullptr);
-		if (formatResult != 0)
-			out << errorMessage;
-		else
-			out << "No extra description found";
-		if (errorMessage)
-			::LocalFree(errorMessage);
-	}
+		out << FormatError(hr);
 	out << std::endl;
 	throw std::runtime_error(out.str());
 }

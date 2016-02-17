@@ -5,13 +5,8 @@
 #include "FooWrapper.h"
 #include "CppCom_i.c"
 
-BOOL __stdcall DllMain(HINSTANCE instance, DWORD reason, void* reserved)
+extern "C" BOOL __stdcall DllMain(HINSTANCE instance, DWORD reason, void* reserved)
 {
-	switch (reason)
-	{
-	case DLL_PROCESS_ATTACH:
-		return ::DisableThreadLibraryCalls(instance);
-	}
 	return TRUE;
 }
 
