@@ -112,6 +112,8 @@ int main(int argc, char** argv)
 			Run(CsCom::CLSID_FooCustom);
 		else if (argv[1] == std::string{ "hook" })
 			Run(CsCom::CLSID_FooHook);
+		else if (argv[1] == std::string{ "hook2" })
+			Run(CsCom::CLSID_FooHook2);
 		else
 			std::cout << "WTF?" << std::endl;
 	}

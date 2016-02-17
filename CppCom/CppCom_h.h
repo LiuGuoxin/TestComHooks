@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Tue Feb 16 17:23:20 2016
+/* at Tue Feb 16 19:05:22 2016
  */
 /* Compiler settings for CppCom.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
