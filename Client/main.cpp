@@ -42,7 +42,7 @@ void Check(HRESULT hr, const std::string& function)
 	std::ostringstream out;
 	out << "hr = " << hr << std::endl
 		<< "function = " << function << std::endl
-		<< "descriptoin = ";
+		<< "description = ";
 	CComPtr<IErrorInfo> errorInfo;
 	auto errorInfoResult = ::GetErrorInfo(0, &errorInfo);
 	if (errorInfoResult == S_OK)

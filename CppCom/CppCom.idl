@@ -13,6 +13,13 @@ library CppCom
 		HRESULT Bar();
 	};
 
+	[object, uuid("5327560C-D7F2-4FF3-BB2E-17EEE9875F2D"), dual]
+	interface IFooLate : IDispatch
+	{
+		[id(1)]
+		HRESULT BarLate();
+	};
+
 	[uuid("B7491852-3A2B-4CE9-8ADF-4C1D36EA2379")]
 	coclass FooNative
 	{

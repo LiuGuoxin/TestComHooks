@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Tue Feb 16 19:05:22 2016
+/* at Wed Feb 17 00:43:41 2016
  */
 /* Compiler settings for CppCom.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -46,6 +46,13 @@
 typedef interface IFoo IFoo;
 
 #endif 	/* __IFoo_FWD_DEFINED__ */
+
+
+#ifndef __IFooLate_FWD_DEFINED__
+#define __IFooLate_FWD_DEFINED__
+typedef interface IFooLate IFooLate;
+
+#endif 	/* __IFooLate_FWD_DEFINED__ */
 
 
 #ifndef __FooNative_FWD_DEFINED__
@@ -167,6 +174,134 @@ EXTERN_C const IID IID_IFoo;
 
 
 #endif 	/* __IFoo_INTERFACE_DEFINED__ */
+
+
+#ifndef __IFooLate_INTERFACE_DEFINED__
+#define __IFooLate_INTERFACE_DEFINED__
+
+/* interface IFooLate */
+/* [dual][uuid][object] */ 
+
+
+EXTERN_C const IID IID_IFooLate;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("5327560C-D7F2-4FF3-BB2E-17EEE9875F2D")
+    IFooLate : public IDispatch
+    {
+    public:
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE BarLate( void) = 0;
+        
+    };
+    
+    
+#else 	/* C style interface */
+
+    typedef struct IFooLateVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
+            IFooLate * This,
+            /* [in] */ REFIID riid,
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE *AddRef )( 
+            IFooLate * This);
+        
+        ULONG ( STDMETHODCALLTYPE *Release )( 
+            IFooLate * This);
+        
+        HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
+            IFooLate * This,
+            /* [out] */ UINT *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
+            IFooLate * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo **ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
+            IFooLate * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR *rgszNames,
+            /* [range][in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
+            IFooLate * This,
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *BarLate )( 
+            IFooLate * This);
+        
+        END_INTERFACE
+    } IFooLateVtbl;
+
+    interface IFooLate
+    {
+        CONST_VTBL struct IFooLateVtbl *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IFooLate_QueryInterface(This,riid,ppvObject)	\
+    ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
+
+#define IFooLate_AddRef(This)	\
+    ( (This)->lpVtbl -> AddRef(This) ) 
+
+#define IFooLate_Release(This)	\
+    ( (This)->lpVtbl -> Release(This) ) 
+
+
+#define IFooLate_GetTypeInfoCount(This,pctinfo)	\
+    ( (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo) ) 
+
+#define IFooLate_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+    ( (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo) ) 
+
+#define IFooLate_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+    ( (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId) ) 
+
+#define IFooLate_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+    ( (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr) ) 
+
+
+#define IFooLate_BarLate(This)	\
+    ( (This)->lpVtbl -> BarLate(This) ) 
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+
+#endif 	/* __IFooLate_INTERFACE_DEFINED__ */
 
 
 EXTERN_C const CLSID CLSID_FooNative;
