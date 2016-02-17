@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include <objbase.h>
+#include <DispEx.h>
 #include <atlbase.h>
 
 #include <iostream>
@@ -64,6 +65,26 @@ void Check(HRESULT hr, const std::string& function)
 	throw std::runtime_error(out.str());
 }
 
+template <typename Interface>
+void TestInterface(const std::string& name, CComPtr<IUnknown>& unknown)
+{
+	std::cout << "> QI " << name << "...";
+	CComPtr<Interface> other;
+	auto hr = unknown.QueryInterface(&other);
+	std::cout << (SUCCEEDED(hr) ? "supported" : "not-supported") << std::endl;
+}
+
+void TestInterfaces(CComPtr<IUnknown>& unknown)
+{
+	TestInterface<IDispatch>("IDispatch", unknown);
+	TestInterface<ITypeInfo>("ITypeInfo", unknown);
+	TestInterface<IProvideClassInfo>("IProvideClassInfo", unknown);
+	TestInterface<IConnectionPoint>("IConnectionPoint", unknown);
+	TestInterface<IConnectionPointContainer>("IConnectionPointContainer", unknown);
+	TestInterface<IDispatchEx>("IDispatchEx", unknown);
+	TestInterface<IEnumVARIANT>("IEnumVARIANT", unknown);
+}
+
 void Run(REFCLSID rclsid)
 {
 	CComPtr<ISupportErrorInfo> supportErrorInfo;
@@ -82,6 +103,8 @@ void Run(REFCLSID rclsid)
 			hr = foo.QueryInterface(&supportErrorInfo);
 			std::cout << (SUCCEEDED(hr) ? "supported" : "not-supported") << std::endl;
 
+			TestInterfaces(unknown);
+
 			std::cout << "> About to call Bar..." << std::endl;
 			hr = foo->Bar();
 			Check(hr, "Foo::Bar");
@@ -90,6 +113,17 @@ void Run(REFCLSID rclsid)
 		std::cout << "> About to release IUnknown reference..." << std::endl;
 	}
 	std::cout << "> About to release ISupportErrorInfo reference..." << std::endl;
+}
+
+void Help()
+{
+	std::cout
+		<< "c++      - C++ FooNative" << std::endl
+		<< "c#       - C# Foo" << std::endl
+		<< "wrapper  - C++ FooWrapper -> C# Foo" << std::endl
+		<< "custom   - C# FooCustom (ICustomQueryInterface)" << std::endl
+		<< "hook     - C# FooHook (detour Release)" << std::endl
+		<< "hook2    - C# FooHook2 (detour Release/QueryInterface)" << std::endl;
 }
 
 int main(int argc, char** argv)
@@ -101,7 +135,7 @@ int main(int argc, char** argv)
 		Check(hr, "CoInitializeEx");
 
 		if (argc < 2)
-			Run(CppCom::CLSID_FooWrapper);
+			Help();
 		else if (argv[1] == std::string{ "c++" })
 			Run(CppCom::CLSID_FooNative);
 		else if (argv[1] == std::string{ "c#" })
@@ -115,7 +149,7 @@ int main(int argc, char** argv)
 		else if (argv[1] == std::string{ "hook2" })
 			Run(CsCom::CLSID_FooHook2);
 		else
-			std::cout << "WTF?" << std::endl;
+			Help();
 	}
 	catch (const std::exception& exception)
 	{

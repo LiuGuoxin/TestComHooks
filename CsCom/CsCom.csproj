@@ -48,6 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CcwHook.cs" />
+    <Compile Include="CcwWrapper.cs" />
+    <Compile Include="CcwWrappers.cs" />
+    <Compile Include="DeterministicFinalizer.cs" />
     <Compile Include="Foo.cs" />
     <Compile Include="FooCustom.cs" />
     <Compile Include="FooHook2.cs" />
