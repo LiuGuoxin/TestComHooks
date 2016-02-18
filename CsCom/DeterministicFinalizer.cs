@@ -11,12 +11,16 @@ namespace CsCom
 		private readonly CcwWrappers wrappers = new CcwWrappers();
 		private readonly List<CcwHook> hooks = new List<CcwHook>();
 
-		public DeterministicFinalizer(IDisposable comObject, params Type[] interfaces)
+		public DeterministicFinalizer(IDisposable comObject)
 		{
 			var unknown = Marshal.GetIUnknownForObject(comObject);
 			//TODO: GetIDispatchForObject if any interfaces are ComInterfaceType InterfaceIsDual or InterfaceIsIDispatch.
 			var disposable = Marshal.GetComInterfaceForObject(comObject, typeof(IDisposable));
-			var interfacePointers = interfaces.Select(@interface => Marshal.GetComInterfaceForObject(comObject, @interface)).ToList();
+			var interfacePointers = comObject.GetType()
+				.GetInterfaces()
+				.Where(Marshal.IsTypeVisibleFromCom)
+				.Select(@interface => Marshal.GetComInterfaceForObject(comObject, @interface))
+				.ToList();
 			var supportErrorInfo = wrappers.Wrap(unknown, new Guid("df0b3d60-548f-101b-8e65-08002b2bd119"), 4);
 			var provideClassInfo = wrappers.Wrap(unknown, new Guid("B196B283-BAB4-101A-B69C-00AA00341D07"), 4);
 			var connectionPointContainer = wrappers.Wrap(unknown, new Guid("B196B284-BAB4-101A-B69C-00AA00341D07"), 5);
@@ -24,7 +28,6 @@ namespace CsCom
 			//TODO: optional (if IExpando) IDispatchEx "A6EF9860-C720-11d0-9337-00A0C90DCAA9" functionCount=15 (3 + 4 + 8)
 			//TODO: optional (if IEnumerable) IEnumVARIANT "00020404-0000-0000-C000-000000000046" functionCount=7 (3 + 4)
 
-			//NOTE: Should QueryInterface all interfaces prior to installing QueryInterface hooks.
 			hooks.Add(new CcwHook(comObject, unknown, wrappers));
 			hooks.Add(new CcwHook(comObject, disposable, wrappers));
 			foreach (var interfacePointer in interfacePointers)
