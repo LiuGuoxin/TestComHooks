@@ -15,7 +15,6 @@ namespace CsCom
 		{
 			var unknown = Marshal.GetIUnknownForObject(comObject);
 			//TODO: GetIDispatchForObject if any interfaces are ComInterfaceType InterfaceIsDual or InterfaceIsIDispatch.
-			var disposable = Marshal.GetComInterfaceForObject(comObject, typeof(IDisposable));
 			var interfacePointers = comObject.GetType()
 				.GetInterfaces()
 				.Where(Marshal.IsTypeVisibleFromCom)
@@ -29,7 +28,6 @@ namespace CsCom
 			//TODO: optional (if IEnumerable) IEnumVARIANT "00020404-0000-0000-C000-000000000046" functionCount=7 (3 + 4)
 
 			hooks.Add(new CcwHook(comObject, unknown, wrappers));
-			hooks.Add(new CcwHook(comObject, disposable, wrappers));
 			foreach (var interfacePointer in interfacePointers)
 				hooks.Add(new CcwHook(comObject, interfacePointer, wrappers));
 			hooks.Add(new CcwHook(comObject, supportErrorInfo, wrappers));
@@ -37,7 +35,6 @@ namespace CsCom
 			hooks.Add(new CcwHook(comObject, connectionPointContainer, wrappers));
 
 			Marshal.Release(unknown);
-			Marshal.Release(disposable);
 			foreach (var interfacePointer in interfacePointers)
 				Marshal.Release(interfacePointer);
 			Marshal.Release(supportErrorInfo.Wrapper);

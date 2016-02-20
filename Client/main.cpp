@@ -14,6 +14,11 @@
 #import "c:\save\code\tests\TestComHooks\CppCom\Debug\CppCom.tlb" raw_interfaces_only named_guids
 #import "c:\save\code\tests\TestComHooks\CsCom\bin\Debug\CsCom.tlb" raw_interfaces_only named_guids
 
+#if defined(ReportEvent)
+#undef ReportEvent
+#endif
+#import "mscorlib.tlb" raw_interfaces_only named_guids
+
 std::string FormatError(int error)
 {
 	std::string result;
@@ -83,6 +88,9 @@ void TestInterfaces(CComPtr<IUnknown>& unknown)
 	TestInterface<IConnectionPointContainer>("IConnectionPointContainer", unknown);
 	TestInterface<IDispatchEx>("IDispatchEx", unknown);
 	TestInterface<IEnumVARIANT>("IEnumVARIANT", unknown);
+	TestInterface<mscorlib::IDisposable>("IDisposable", unknown);
+	TestInterface<mscorlib::_Object>("_Object", unknown);
+	TestInterface<mscorlib::IEnumerable>("IEnumerable", unknown);
 }
 
 void Run(REFCLSID rclsid)
