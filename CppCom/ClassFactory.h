@@ -6,7 +6,7 @@
 namespace Com
 {
 	template <typename Type>
-	class ClassFactory : public Object<ClassFactory<Type>, InterfaceList<IClassFactory>>
+	class ClassFactory : public Object<ClassFactory<Type>, nullptr, IClassFactory>
 	{
 	public:
 		HRESULT __stdcall CreateInstance(IUnknown* pUnkOuter, REFIID riid, void** ppvObject) final

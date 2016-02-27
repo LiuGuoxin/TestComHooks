@@ -3,7 +3,7 @@
 #include "CppCom.h"
 #include <iostream>
 
-class FooNative : public Com::Object<FooNative, Com::InterfaceList<IFoo>, &CLSID_FooNative>
+class FooNative : public Com::Object<FooNative, &CLSID_FooNative, IFoo>
 {
 public:
 	FooNative()

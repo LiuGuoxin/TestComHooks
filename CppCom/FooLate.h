@@ -3,7 +3,7 @@
 #include "CppCom.h"
 #include <iostream>
 
-class FooLate : public Com::Object<FooLate, Com::InterfaceList<IFooLate>, &CLSID_FooLate>
+class FooLate : public Com::Object<FooLate, &CLSID_FooLate, IFooLate>
 {
 public:
 	FooLate()

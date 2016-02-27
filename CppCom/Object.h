@@ -7,8 +7,8 @@
 
 namespace Com
 {
-	template <typename Type, typename Interfaces, const CLSID* Clsid = nullptr>
-	class Object : public Dispatch<Interfaces>, public ISupportErrorInfo
+	template <typename Type, const CLSID* Clsid, typename... Interfaces>
+	class Object : public Dispatch<InterfaceList<Interfaces...>>, public ISupportErrorInfo
 	{
 	protected:
 		std::atomic<int> referenceCount = 0;
@@ -18,13 +18,13 @@ namespace Com
 		{
 			Module::GetInstance().AddRef();
 		}
-		Object(const Object<Type, Interfaces, Clsid>& rhs) = delete;
+		Object(const Object<Type, Clsid, Interfaces...>& rhs) = delete;
 		virtual ~Object()
 		{
 			Module::GetInstance().Release();
 		}
 
-		Object<Type, Interfaces, Clsid>& operator=(const Object<Type, Interfaces, Clsid>& rhs) = delete;
+		Object<Type, Clsid, Interfaces...>& operator=(const Object<Type, Clsid, Interfaces...>& rhs) = delete;
 
 		HRESULT __stdcall QueryInterface(REFIID riid, void** ppvObject) final
 		{

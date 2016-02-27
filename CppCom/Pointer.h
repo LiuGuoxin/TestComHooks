@@ -8,4 +8,6 @@ namespace Com
 
 	template <typename Interface>
 	using QueryPointer = ATL::CComQIPtr<Interface>;
+
+	using String = ATL::CComBSTR;
 }

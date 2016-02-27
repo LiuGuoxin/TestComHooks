@@ -10,8 +10,8 @@
 
 namespace Com
 {
-	template <typename Type, typename Interface, const CLSID* Clsid, const CLSID* InnerClsid>
-	class Wrapper : public Object<Type, InterfaceList<Interface>, Clsid>
+	template <typename Type, const CLSID* Clsid, const CLSID* InnerClsid, typename Interface>
+	class Wrapper : public Object<Type, Clsid, Interface>
 	{
 	protected:
 		Pointer<Interface> inner;
