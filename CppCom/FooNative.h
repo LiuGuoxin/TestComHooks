@@ -1,9 +1,9 @@
 #pragma once
-#include "ComObject.h"
+#include "Object.h"
 #include "CppCom.h"
 #include <iostream>
 
-class FooNative : public ComObject<FooNative, ComInterfaces<IFoo>, &CLSID_FooNative>
+class FooNative : public Com::Object<FooNative, Com::InterfaceList<IFoo>, &CLSID_FooNative>
 {
 public:
 	FooNative()

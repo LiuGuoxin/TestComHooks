@@ -4,18 +4,6 @@
     <ClInclude Include="ClassFactory.h">
       <Filter>Com</Filter>
     </ClInclude>
-    <ClInclude Include="ComModule.h">
-      <Filter>Com</Filter>
-    </ClInclude>
-    <ClInclude Include="ComObject.h">
-      <Filter>Com</Filter>
-    </ClInclude>
-    <ClInclude Include="ComObjectMap.h">
-      <Filter>Com</Filter>
-    </ClInclude>
-    <ClInclude Include="ProxyObject.h">
-      <Filter>Com</Filter>
-    </ClInclude>
     <ClInclude Include="FooNative.h">
       <Filter>Objects</Filter>
     </ClInclude>
@@ -24,9 +12,6 @@
     </ClInclude>
     <ClInclude Include="FooLate.h">
       <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="DispatchObject.h">
-      <Filter>Com</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Dll</Filter>
@@ -37,10 +22,28 @@
     <ClInclude Include="FooBoth.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="ComInterfaces.h">
+    <ClInclude Include="DispatchInterfaceSelector.h">
       <Filter>Com</Filter>
     </ClInclude>
-    <ClInclude Include="DispatchInterfaceSelector.h">
+    <ClInclude Include="InterfaceList.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="Module.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectList.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="Dispatch.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="Wrapper.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="Pointer.h">
       <Filter>Com</Filter>
     </ClInclude>
   </ItemGroup>

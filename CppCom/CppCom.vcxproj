@@ -170,18 +170,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassFactory.h" />
-    <ClInclude Include="ComInterfaces.h" />
-    <ClInclude Include="ComModule.h" />
-    <ClInclude Include="ComObject.h" />
-    <ClInclude Include="ComObjectMap.h" />
+    <ClInclude Include="InterfaceList.h" />
+    <ClInclude Include="Module.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectList.h" />
     <ClInclude Include="CppCom.h" />
     <ClInclude Include="DispatchInterfaceSelector.h" />
-    <ClInclude Include="DispatchObject.h" />
+    <ClInclude Include="Dispatch.h" />
     <ClInclude Include="FooBoth.h" />
     <ClInclude Include="FooLate.h" />
     <ClInclude Include="FooNative.h" />
     <ClInclude Include="FooWrapper.h" />
-    <ClInclude Include="ProxyObject.h" />
+    <ClInclude Include="Pointer.h" />
+    <ClInclude Include="Wrapper.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
