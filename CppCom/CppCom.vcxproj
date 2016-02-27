@@ -154,7 +154,12 @@
     <None Include="CppCom.def" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="CppCom.idl" />
+    <Midl Include="CppCom.idl">
+      <HeaderFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).h</HeaderFileName>
+      <TypeLibraryName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName).tlb</TypeLibraryName>
+      <HeaderFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename).h</HeaderFileName>
+      <TypeLibraryName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectName).tlb</TypeLibraryName>
+    </Midl>
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="CppCom.manifest" />
@@ -172,6 +177,10 @@
     <ClInclude Include="FooNative.h" />
     <ClInclude Include="FooWrapper.h" />
     <ClInclude Include="ProxyObject.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CppCom.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

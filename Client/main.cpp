@@ -146,6 +146,24 @@ void RunLate(REFCLSID rclsid)
 			std::cout << "> About to call Bar..." << std::endl;
 			hr = foo->BarLate();
 			Check(hr, "Foo::BarLate");
+
+			std::cout << "> About to call GetIDsOfNames..." << std::endl;
+			wchar_t name[] = L"BarLate";
+			wchar_t* names[] = { name };
+			DISPID dispid = 0;
+			hr = foo->GetIDsOfNames(IID_NULL, names, 1, 1033, &dispid);
+			Check(hr, "GetIDsOfNames");
+			std::cout << "> dispid = " << dispid << std::endl;
+
+			std::cout << "> About to call Invoke..." << std::endl;
+			DISPPARAMS params;
+			params.cArgs = 0;
+			params.cNamedArgs = 0;
+			params.rgdispidNamedArgs = nullptr;
+			params.rgvarg = nullptr;
+			hr = foo->Invoke(dispid, IID_NULL, 1033, DISPATCH_METHOD, &params, nullptr, nullptr, nullptr);
+			Check(hr, "Invoke");
+
 			std::cout << "> About to release IFooLate reference..." << std::endl;
 		}
 		std::cout << "> About to release IUnknown reference..." << std::endl;

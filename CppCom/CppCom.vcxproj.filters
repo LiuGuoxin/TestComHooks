@@ -28,6 +28,9 @@
     <ClInclude Include="DispatchObject.h">
       <Filter>Com</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Dll</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Com">
@@ -62,5 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CppCom.rc">
+      <Filter>Dll</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

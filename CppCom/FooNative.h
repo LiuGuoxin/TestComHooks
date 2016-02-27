@@ -1,6 +1,6 @@
 #pragma once
 #include "ComObject.h"
-#include "CppCom_h.h"
+#include "CppCom.h"
 #include <iostream>
 
 class FooNative : public ComObject<FooNative, IFoo, &CLSID_FooNative>

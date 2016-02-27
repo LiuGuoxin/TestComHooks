@@ -1,6 +1,6 @@
 #pragma once
 #include "DispatchObject.h"
-#include "CppCom_h.h"
+#include "CppCom.h"
 #include <iostream>
 
 class FooLate : public DispatchObject<FooLate, IFooLate, &CLSID_FooLate>
