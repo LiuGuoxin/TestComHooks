@@ -4,7 +4,6 @@
 #include "FooNative.h"
 #include "FooWrapper.h"
 #include "FooLate.h"
-#include "CppCom_i.c"
 
 extern "C" BOOL __stdcall DllMain(HINSTANCE instance, DWORD reason, void* reserved)
 {

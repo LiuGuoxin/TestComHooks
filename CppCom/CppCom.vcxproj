@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CppCom_i.c" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +173,7 @@
     <ClInclude Include="ComModule.h" />
     <ClInclude Include="ComObject.h" />
     <ClInclude Include="ComObjectMap.h" />
+    <ClInclude Include="CppCom.h" />
     <ClInclude Include="DispatchObject.h" />
     <ClInclude Include="FooLate.h" />
     <ClInclude Include="FooNative.h" />

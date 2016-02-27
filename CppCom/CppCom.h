@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Fri Feb 26 23:30:59 2016
+/* at Sat Feb 27 02:31:15 2016
  */
 /* Compiler settings for CppCom.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -32,8 +32,8 @@
 #endif // __RPCNDR_H_VERSION__
 
 
-#ifndef __CppCom_h_h__
-#define __CppCom_h_h__
+#ifndef __CppCom_h__
+#define __CppCom_h__
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once

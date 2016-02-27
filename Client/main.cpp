@@ -11,7 +11,7 @@
 #include <locale>
 #include <codecvt>
 
-#import "c:\save\code\tests\TestComHooks\CppCom\Debug\CppCom.tlb" raw_interfaces_only named_guids
+#import "c:\save\code\tests\TestComHooks\CppCom\CppCom.tlb" raw_interfaces_only named_guids
 #import "c:\save\code\tests\TestComHooks\CsCom\bin\Debug\CsCom.tlb" raw_interfaces_only named_guids
 
 #if defined(ReportEvent)

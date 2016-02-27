@@ -31,6 +31,9 @@
     <ClInclude Include="resource.h">
       <Filter>Dll</Filter>
     </ClInclude>
+    <ClInclude Include="CppCom.h">
+      <Filter>Dll</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Com">
@@ -60,6 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
+      <Filter>Dll</Filter>
+    </ClCompile>
+    <ClCompile Include="CppCom_i.c">
       <Filter>Dll</Filter>
     </ClCompile>
   </ItemGroup>
