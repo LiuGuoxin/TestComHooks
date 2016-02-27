@@ -123,10 +123,41 @@ void Run(REFCLSID rclsid)
 	std::cout << "> About to release ISupportErrorInfo reference..." << std::endl;
 }
 
+void RunLate(REFCLSID rclsid)
+{
+	CComPtr<ISupportErrorInfo> supportErrorInfo;
+	{
+		std::cout << "> About to create Foo via unknown..." << std::endl;
+		CComPtr<IUnknown> unknown;
+		auto hr = unknown.CoCreateInstance(rclsid, nullptr, CLSCTX_INPROC_SERVER);
+		Check(hr, "CoCreateInstance()");
+		std::cout << "> About to QI to IFooLate..." << std::endl;
+		{
+			CComPtr<CppCom::IFooLate> foo;
+			hr = unknown.QueryInterface(&foo);
+			Check(hr, "QueryInterface");
+
+			std::cout << "> About to QI to ISupportErrorInfo..." << std::endl;
+			hr = foo.QueryInterface(&supportErrorInfo);
+			std::cout << (SUCCEEDED(hr) ? "supported" : "not-supported") << std::endl;
+
+			TestInterfaces(unknown);
+
+			std::cout << "> About to call Bar..." << std::endl;
+			hr = foo->BarLate();
+			Check(hr, "Foo::BarLate");
+			std::cout << "> About to release IFooLate reference..." << std::endl;
+		}
+		std::cout << "> About to release IUnknown reference..." << std::endl;
+	}
+	std::cout << "> About to release ISupportErrorInfo reference..." << std::endl;
+}
+
 void Help()
 {
 	std::cout
 		<< "c++      - C++ FooNative" << std::endl
+		<< "late     - C++ FooLate" << std::endl
 		<< "c#       - C# Foo" << std::endl
 		<< "wrapper  - C++ FooWrapper -> C# Foo" << std::endl
 		<< "custom   - C# FooCustom (ICustomQueryInterface)" << std::endl
@@ -146,6 +177,8 @@ int main(int argc, char** argv)
 			Help();
 		else if (argv[1] == std::string{ "c++" })
 			Run(CppCom::CLSID_FooNative);
+		else if (argv[1] == std::string{ "late" })
+			RunLate(CppCom::CLSID_FooLate);
 		else if (argv[1] == std::string{ "c#" })
 			Run(CsCom::CLSID_Foo);
 		else if (argv[1] == std::string{ "wrapper" })

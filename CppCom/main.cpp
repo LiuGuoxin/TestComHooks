@@ -3,10 +3,13 @@
 #include "ComObjectMap.h"
 #include "FooNative.h"
 #include "FooWrapper.h"
+#include "FooLate.h"
 #include "CppCom_i.c"
 
 extern "C" BOOL __stdcall DllMain(HINSTANCE instance, DWORD reason, void* reserved)
 {
+	if (reason == DLL_PROCESS_ATTACH)
+		ComModule::GetInstance().Initialize(instance);
 	return TRUE;
 }
 
@@ -19,6 +22,7 @@ HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, void** ppv)
 {
 	return ComObjectMap<
 		FooNative,
-		FooWrapper
+		FooWrapper,
+		FooLate
 	>::Create(rclsid, riid, ppv);
 }

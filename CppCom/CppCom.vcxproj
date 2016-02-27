@@ -167,9 +167,10 @@
     <ClInclude Include="ComModule.h" />
     <ClInclude Include="ComObject.h" />
     <ClInclude Include="ComObjectMap.h" />
+    <ClInclude Include="DispatchObject.h" />
+    <ClInclude Include="FooLate.h" />
     <ClInclude Include="FooNative.h" />
     <ClInclude Include="FooWrapper.h" />
-    <ClInclude Include="IDisposable.h" />
     <ClInclude Include="ProxyObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

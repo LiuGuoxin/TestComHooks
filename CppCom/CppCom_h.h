@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Wed Feb 17 00:43:41 2016
+/* at Fri Feb 26 23:30:59 2016
  */
 /* Compiler settings for CppCom.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -77,6 +77,18 @@ typedef struct FooWrapper FooWrapper;
 #endif /* __cplusplus */
 
 #endif 	/* __FooWrapper_FWD_DEFINED__ */
+
+
+#ifndef __FooLate_FWD_DEFINED__
+#define __FooLate_FWD_DEFINED__
+
+#ifdef __cplusplus
+typedef class FooLate FooLate;
+#else
+typedef struct FooLate FooLate;
+#endif /* __cplusplus */
+
+#endif 	/* __FooLate_FWD_DEFINED__ */
 
 
 /* header files for imported files */
@@ -318,6 +330,14 @@ EXTERN_C const CLSID CLSID_FooWrapper;
 
 class DECLSPEC_UUID("876C4FD9-6F4C-4989-8408-B6443F3305E4")
 FooWrapper;
+#endif
+
+EXTERN_C const CLSID CLSID_FooLate;
+
+#ifdef __cplusplus
+
+class DECLSPEC_UUID("0F78DDEE-D26B-4CD4-BD4A-A7DC70179D19")
+FooLate;
 #endif
 #endif /* __CppCom_LIBRARY_DEFINED__ */
 

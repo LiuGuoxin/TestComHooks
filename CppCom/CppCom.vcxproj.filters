@@ -13,9 +13,6 @@
     <ClInclude Include="ComObjectMap.h">
       <Filter>Com</Filter>
     </ClInclude>
-    <ClInclude Include="IDisposable.h">
-      <Filter>Com</Filter>
-    </ClInclude>
     <ClInclude Include="ProxyObject.h">
       <Filter>Com</Filter>
     </ClInclude>
@@ -24,6 +21,12 @@
     </ClInclude>
     <ClInclude Include="FooWrapper.h">
       <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="FooLate.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="DispatchObject.h">
+      <Filter>Com</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

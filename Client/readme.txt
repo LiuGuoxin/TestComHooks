@@ -15,10 +15,12 @@ Running the client
 5) client.exe hook
 	This will create a C# FooHook COM object that detours the Release v-table entries in all exposed COM interfaces.
 	It detects the final release and disposes the object if the final release was on an interface that was detoured.
-5) client.exe hook2
+6) client.exe hook2
 	This will create a C# FooHook2 COM object that detours the Release v-table entries in all exposed COM interfaces.
 	This differs from hook in that automatically supported interfaces like ISupportErrorInfo are also supported for final release.
 	This appears to work in all intended cases.
+7) client.exe late
+	This will create a C++ FooLate COM object that is just for testing implementing IDispatch from C++.
 
 Diagnosing problems
 ===================

@@ -31,4 +31,10 @@ library CppCom
 	{
 		[default] interface IFoo;
 	};
+
+	[uuid("0F78DDEE-D26B-4CD4-BD4A-A7DC70179D19")]
+	coclass FooLate
+	{
+		[default] interface IFooLate;
+	};
 };
