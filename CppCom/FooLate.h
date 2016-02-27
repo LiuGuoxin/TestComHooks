@@ -1,9 +1,9 @@
 #pragma once
-#include "DispatchObject.h"
+#include "ComObject.h"
 #include "CppCom.h"
 #include <iostream>
 
-class FooLate : public DispatchObject<FooLate, IFooLate, &CLSID_FooLate>
+class FooLate : public ComObject<FooLate, ComInterfaces<IFooLate>, &CLSID_FooLate>
 {
 public:
 	FooLate()

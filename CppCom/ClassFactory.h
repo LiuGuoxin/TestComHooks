@@ -4,7 +4,7 @@
 #include "ComModule.h"
 
 template <typename Type>
-class ClassFactory : public ComObject<ClassFactory<Type>, IClassFactory>
+class ClassFactory : public ComObject<ClassFactory<Type>, ComInterfaces<IClassFactory>>
 {
 public:
 	HRESULT __stdcall CreateInstance(IUnknown* pUnkOuter, REFIID riid, void** ppvObject) final

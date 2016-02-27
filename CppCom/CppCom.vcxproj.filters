@@ -34,6 +34,15 @@
     <ClInclude Include="CppCom.h">
       <Filter>Dll</Filter>
     </ClInclude>
+    <ClInclude Include="FooBoth.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ComInterfaces.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="DispatchInterfaceSelector.h">
+      <Filter>Com</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Com">

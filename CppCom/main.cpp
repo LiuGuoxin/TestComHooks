@@ -4,6 +4,7 @@
 #include "FooNative.h"
 #include "FooWrapper.h"
 #include "FooLate.h"
+#include "FooBoth.h"
 
 extern "C" BOOL __stdcall DllMain(HINSTANCE instance, DWORD reason, void* reserved)
 {
@@ -22,6 +23,7 @@ HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, void** ppv)
 	return ComObjectMap<
 		FooNative,
 		FooWrapper,
-		FooLate
+		FooLate,
+		FooBoth
 	>::Create(rclsid, riid, ppv);
 }

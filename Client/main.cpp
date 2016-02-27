@@ -171,11 +171,23 @@ void RunLate(REFCLSID rclsid)
 	std::cout << "> About to release ISupportErrorInfo reference..." << std::endl;
 }
 
+void RunBoth(REFCLSID rclsid)
+{
+	std::cout << "Early" << std::endl
+		<< "==================" << std::endl;
+	Run(rclsid);
+	std::cout << std::endl
+		<< "Late" << std::endl
+		<< "==================" << std::endl;
+	RunLate(rclsid);
+}
+
 void Help()
 {
 	std::cout
 		<< "c++      - C++ FooNative" << std::endl
 		<< "late     - C++ FooLate" << std::endl
+		<< "both     - C++ FooBoth (IUnknown and IDispatch)" << std::endl
 		<< "c#       - C# Foo" << std::endl
 		<< "wrapper  - C++ FooWrapper -> C# Foo" << std::endl
 		<< "custom   - C# FooCustom (ICustomQueryInterface)" << std::endl
@@ -197,6 +209,8 @@ int main(int argc, char** argv)
 			Run(CppCom::CLSID_FooNative);
 		else if (argv[1] == std::string{ "late" })
 			RunLate(CppCom::CLSID_FooLate);
+		else if (argv[1] == std::string{ "both" })
+			RunBoth(CppCom::CLSID_FooBoth);
 		else if (argv[1] == std::string{ "c#" })
 			Run(CsCom::CLSID_Foo);
 		else if (argv[1] == std::string{ "wrapper" })

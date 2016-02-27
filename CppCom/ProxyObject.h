@@ -2,6 +2,7 @@
 #include <objbase.h>
 #include <atlbase.h>
 #include "ComObject.h"
+#include "ComInterfaces.h"
 
 #if defined(ReportEvent)
 #undef ReportEvent
@@ -9,7 +10,7 @@
 #import <mscorlib.tlb> raw_interfaces_only named_guids
 
 template <typename Type, typename Interface, const CLSID* Clsid, const CLSID* InnerClsid>
-class ProxyObject : public ComObject<Type, Interface, Clsid>
+class ProxyObject : public ComObject<Type, ComInterfaces<Interface>, Clsid>
 {
 protected:
 	CComPtr<Interface> inner;

@@ -1,10 +1,10 @@
 #pragma once
+#include <objbase.h>
 #include <atlbase.h>
 #include "ComModule.h"
-#include "ComObject.h"
 
-template <typename Type, typename Interface, const CLSID* Clsid = nullptr>
-class DispatchObject : public ComObject<Type, Interface, Clsid>
+template <typename Interfaces, bool ObjectSupportsDispatch = Interfaces::ObjectSupportsDispatch>
+class DispatchObject : public Interfaces
 {
 private:
 	CComPtr<ITypeInfo> typeInfo;
@@ -17,21 +17,16 @@ private:
 		auto hr = ComModule::GetInstance().LoadTypeLibrary(&typeLibrary);
 		if (FAILED(hr))
 			return hr;
-		return typeLibrary->GetTypeInfoOfGuid(__uuidof(Interface), &typeInfo);
+		return typeLibrary->GetTypeInfoOfGuid(__uuidof(DispatchInterface), &typeInfo);
+	}
+
+protected:
+	void* GetDispatchInterface()
+	{
+		return static_cast<IDispatch*>(static_cast<DispatchInterface*>(this));
 	}
 
 public:
-	HRESULT __stdcall QueryInterface(REFIID riid, void** ppvObject) override
-	{
-		if (riid != IID_IDispatch)
-			return ComObject<Type, Interface, Clsid>::QueryInterface(riid, ppvObject);
-		if (ppvObject == nullptr)
-			return E_POINTER;
-		*ppvObject = static_cast<IDispatch*>(this);
-		++referenceCount;
-		return S_OK;
-	}
-
 	HRESULT __stdcall GetTypeInfoCount(
 		UINT* pctinfo) final
 	{
@@ -83,12 +78,22 @@ public:
 		if (FAILED(hr))
 			return hr;
 		return typeInfo->Invoke(
-			static_cast<IDispatch*>(this),
+			GetDispatchInterface(),
 			dispIdMember,
 			wFlags,
 			pDispParams,
 			pVarResult,
 			pExcepInfo,
 			puArgErr);
+	}
+};
+
+template <typename Interfaces>
+class DispatchObject<Interfaces, false> : public Interfaces
+{
+protected:
+	void* GetDispatchInterface()
+	{
+		return nullptr;
 	}
 };
