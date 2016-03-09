@@ -1,5 +1,5 @@
 #pragma once
-#include "Object.h"
+#include <Com/Com.h>
 #include "CppCom.h"
 #include <iostream>
 

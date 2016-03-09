@@ -44,4 +44,10 @@ library CppCom
 		[default] interface IFoo;
 		interface IFooLate;
 	};
+
+	[uuid("389B6F44-C0B7-4B72-A053-AECE97E48B32")]
+	coclass FooAggregate
+	{
+		[default] interface IFoo;
+	};
 };

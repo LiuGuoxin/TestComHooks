@@ -90,7 +90,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CPPCOM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CPPCOM_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CppCom.def" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="CppCom.idl">
@@ -169,19 +170,12 @@
     <Text Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ClassFactory.h" />
-    <ClInclude Include="InterfaceList.h" />
-    <ClInclude Include="Module.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="ObjectList.h" />
+    <ClInclude Include="FooAggregate.h" />
     <ClInclude Include="CppCom.h" />
-    <ClInclude Include="DispatchInterfaceSelector.h" />
-    <ClInclude Include="Dispatch.h" />
     <ClInclude Include="FooBoth.h" />
     <ClInclude Include="FooLate.h" />
     <ClInclude Include="FooNative.h" />
     <ClInclude Include="FooWrapper.h" />
-    <ClInclude Include="Pointer.h" />
     <ClInclude Include="Wrapper.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -190,5 +184,12 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\Jmfb.Com.1.0.6\build\native\Jmfb.Com.targets" Condition="Exists('..\packages\Jmfb.Com.1.0.6\build\native\Jmfb.Com.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Jmfb.Com.1.0.6\build\native\Jmfb.Com.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Jmfb.Com.1.0.6\build\native\Jmfb.Com.targets'))" />
+  </Target>
 </Project>

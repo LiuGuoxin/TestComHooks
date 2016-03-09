@@ -19,6 +19,9 @@
 		<comClass
 			clsid="{D3063D53-9552-4AC6-9ADC-48D5E7EFB046}"
 			threadingModel="Free" />
+		<comClass
+			clsid="{389B6F44-C0B7-4B72-A053-AECE97E48B32}"
+			threadingModel="Free" />
 		<typelib
 			tlbid="{04E88DF6-098F-4AD3-A7C6-0A13F7BDA77B}"
 			version="1.0"

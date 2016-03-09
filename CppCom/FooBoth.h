@@ -1,6 +1,6 @@
 #pragma once
+#include <Com/Com.h>
 #include "CppCom.h"
-#include "Object.h"
 #include <iostream>
 
 class FooBoth : public Com::Object<FooBoth, &CLSID_FooBoth, IFoo, IFooLate>

@@ -1,7 +1,6 @@
 #pragma once
 #include <objbase.h>
-#include "Object.h"
-#include "Pointer.h"
+#include <Com/Com.h>
 
 #if defined(ReportEvent)
 #undef ReportEvent

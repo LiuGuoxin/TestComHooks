@@ -55,6 +55,7 @@
     <Compile Include="DeterministicFinalizer.cs" />
     <Compile Include="DisposableComObject.cs" />
     <Compile Include="Foo.cs" />
+    <Compile Include="FooAggregate.cs" />
     <Compile Include="FooCustom.cs" />
     <Compile Include="FooHook2.cs" />
     <Compile Include="FooHook.cs" />

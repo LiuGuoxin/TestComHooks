@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Sat Feb 27 02:40:12 2016
+/* at Tue Mar 08 19:59:50 2016
  */
 /* Compiler settings for CppCom.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -101,6 +101,18 @@ typedef struct FooBoth FooBoth;
 #endif /* __cplusplus */
 
 #endif 	/* __FooBoth_FWD_DEFINED__ */
+
+
+#ifndef __FooAggregate_FWD_DEFINED__
+#define __FooAggregate_FWD_DEFINED__
+
+#ifdef __cplusplus
+typedef class FooAggregate FooAggregate;
+#else
+typedef struct FooAggregate FooAggregate;
+#endif /* __cplusplus */
+
+#endif 	/* __FooAggregate_FWD_DEFINED__ */
 
 
 /* header files for imported files */
@@ -358,6 +370,14 @@ EXTERN_C const CLSID CLSID_FooBoth;
 
 class DECLSPEC_UUID("D3063D53-9552-4AC6-9ADC-48D5E7EFB046")
 FooBoth;
+#endif
+
+EXTERN_C const CLSID CLSID_FooAggregate;
+
+#ifdef __cplusplus
+
+class DECLSPEC_UUID("389B6F44-C0B7-4B72-A053-AECE97E48B32")
+FooAggregate;
 #endif
 #endif /* __CppCom_LIBRARY_DEFINED__ */
 

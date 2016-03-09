@@ -185,14 +185,15 @@ void RunBoth(REFCLSID rclsid)
 void Help()
 {
 	std::cout
-		<< "c++      - C++ FooNative" << std::endl
-		<< "late     - C++ FooLate" << std::endl
-		<< "both     - C++ FooBoth (IUnknown and IDispatch)" << std::endl
-		<< "c#       - C# Foo" << std::endl
-		<< "wrapper  - C++ FooWrapper -> C# Foo" << std::endl
-		<< "custom   - C# FooCustom (ICustomQueryInterface)" << std::endl
-		<< "hook     - C# FooHook (detour Release)" << std::endl
-		<< "hook2    - C# FooHook2 (detour Release/QueryInterface)" << std::endl;
+		<< "c++       - C++ FooNative" << std::endl
+		<< "late      - C++ FooLate" << std::endl
+		<< "both      - C++ FooBoth (IUnknown and IDispatch)" << std::endl
+		<< "aggregate - C++ FooAggregate -> C# FooAggregate" << std::endl
+		<< "c#        - C# Foo" << std::endl
+		<< "wrapper   - C++ FooWrapper -> C# Foo" << std::endl
+		<< "custom    - C# FooCustom (ICustomQueryInterface)" << std::endl
+		<< "hook      - C# FooHook (detour Release)" << std::endl
+		<< "hook2     - C# FooHook2 (detour Release/QueryInterface)" << std::endl;
 }
 
 int main(int argc, char** argv)
@@ -221,6 +222,8 @@ int main(int argc, char** argv)
 			Run(CsCom::CLSID_FooHook);
 		else if (argv[1] == std::string{ "hook2" })
 			Run(CsCom::CLSID_FooHook2);
+		else if (argv[1] == std::string{ "aggregate" })
+			Run(CppCom::CLSID_FooAggregate);
 		else
 			Help();
 	}

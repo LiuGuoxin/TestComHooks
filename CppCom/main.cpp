@@ -1,10 +1,10 @@
 #include <Windows.h>
-#include "Module.h"
-#include "ObjectList.h"
+#include <Com/Com.h>
 #include "FooNative.h"
 #include "FooWrapper.h"
 #include "FooLate.h"
 #include "FooBoth.h"
+#include "FooAggregate.h"
 
 extern "C" BOOL __stdcall DllMain(HINSTANCE instance, DWORD reason, void* reserved)
 {
@@ -24,6 +24,7 @@ HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, void** ppv)
 		FooNative,
 		FooWrapper,
 		FooLate,
-		FooBoth
+		FooBoth,
+		FooAggregate2
 	>::Create(rclsid, riid, ppv);
 }
