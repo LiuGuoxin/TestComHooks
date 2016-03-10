@@ -4,7 +4,10 @@
 #include "FooWrapper.h"
 #include "FooLate.h"
 #include "FooBoth.h"
-#include "FooAggregate.h"
+#include "CppCom.h"
+#include "ClrWrapper.h"
+
+DECLARE_CLR_WRAPPER(CsCom, FooAggregate);
 
 extern "C" BOOL __stdcall DllMain(HINSTANCE instance, DWORD reason, void* reserved)
 {
@@ -25,6 +28,6 @@ HRESULT __stdcall DllGetClassObject(REFCLSID rclsid, REFIID riid, void** ppv)
 		FooWrapper,
 		FooLate,
 		FooBoth,
-		FooAggregate2
+		FooAggregate
 	>::Create(rclsid, riid, ppv);
 }

@@ -22,8 +22,11 @@
     <ClInclude Include="Wrapper.h">
       <Filter>Com</Filter>
     </ClInclude>
-    <ClInclude Include="FooAggregate.h">
-      <Filter>Objects</Filter>
+    <ClInclude Include="IClrFactory.h">
+      <Filter>Com</Filter>
+    </ClInclude>
+    <ClInclude Include="ClrWrapper.h">
+      <Filter>Com</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

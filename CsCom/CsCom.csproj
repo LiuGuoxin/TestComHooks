@@ -52,6 +52,7 @@
     <Compile Include="CcwHook.cs" />
     <Compile Include="CcwWrapper.cs" />
     <Compile Include="CcwWrappers.cs" />
+    <Compile Include="ClrFactory.cs" />
     <Compile Include="DeterministicFinalizer.cs" />
     <Compile Include="DisposableComObject.cs" />
     <Compile Include="Foo.cs" />

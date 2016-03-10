@@ -22,9 +22,9 @@ Running the client
 7) client.exe late
 	This will create a C++ FooLate COM object that is just for testing implementing IDispatch from C++.
 8) client.exe aggregate
-	This will create a C++ FooAggregate COM object that aggregates an inner C# object (not the manual wrapper from 1).
-	This works if the C# class uses a different CLSID than the C++ one, but not if they are the same.
-	The C++ one cannot resolve the C# one if they use the same CLSID (and resolving by type name performs differently).
+	This will create a C++ FooAggregate COM object that aggregates an inner C# FooAggregate object.
+	This utilizes a ClrFactory in the C# assembly to create the inner instances from C++; thus no GUIDs or TLB is required from C#.
+	Other than using deprecated Clr functions; this is probably the safest alternative.
 
 Diagnosing problems
 ===================

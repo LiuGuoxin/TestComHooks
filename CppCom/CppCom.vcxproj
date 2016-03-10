@@ -170,12 +170,13 @@
     <Text Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FooAggregate.h" />
+    <ClInclude Include="ClrWrapper.h" />
     <ClInclude Include="CppCom.h" />
     <ClInclude Include="FooBoth.h" />
     <ClInclude Include="FooLate.h" />
     <ClInclude Include="FooNative.h" />
     <ClInclude Include="FooWrapper.h" />
+    <ClInclude Include="IClrFactory.h" />
     <ClInclude Include="Wrapper.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
